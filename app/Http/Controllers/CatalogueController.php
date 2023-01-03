@@ -57,7 +57,7 @@ class CatalogueController extends Controller
     {
         $catalogue = Catalogue::find($id);
 
-        return view('categories.show',compact('category'));
+        return view('catalogues.show',compact('catalogue'));
     }
 
     /**

@@ -5,7 +5,7 @@
 
 @section('content')
 
-<form action="{{ route('catalogues.store') }}" method="POST" >
+    <form action="{{ route('catalogues.store') }}" method="POST">
         @csrf
         <div class="row text-center">
 
