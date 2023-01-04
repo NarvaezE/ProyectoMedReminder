@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Medicine;
+use App\Models\Catalogue;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
@@ -25,7 +26,8 @@ class MedicineController extends Controller
     public function create()
     {
         //
-        return view('medicines.create');
+        $catalogues = Catalogue::all();
+        return view('medicines.create',compact('catalogues'));
 
     }
 
@@ -40,11 +42,13 @@ class MedicineController extends Controller
         $request->validate([
             'name'=>'required',
             'description'=>'required',
+            'stock'=>'required',
+            'catalogue_id'=>'required',
         ]);
         $medicine = $request->all();
 
         Medicine::create($medicine);
-        return redirect()->route('medicines.index')->with('success', 'Catalogo creada con exito');
+        return redirect()->route('medicines.index')->with('success', 'Medicina creada con exito');
     }
 
     /**
@@ -57,7 +61,7 @@ class MedicineController extends Controller
     {
         $medicine = Medicine::find($id);
 
-        return view('medicines.show',compact('category'));
+        return view('medicines.show',compact('medicine'));
     }
 
     /**
@@ -69,8 +73,10 @@ class MedicineController extends Controller
     public function edit($id)
     {
         $medicine = Medicine::find($id);
+        $catalogues = Catalogue::all();
 
-        return view('medicines.edit',compact('medicine'));
+
+        return view('medicines.edit',compact('medicine','catalogues'));
     }
 
     /**
@@ -85,6 +91,8 @@ class MedicineController extends Controller
         $request->validate([
             'name'=>'required',
             'description'=>'required',
+            'stock'=>'required',
+            'catalogue_id'=>'required',
         ]);
         $catalogo=Medicine::find($id);
 

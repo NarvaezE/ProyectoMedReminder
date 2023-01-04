@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('catalogue_id')->nullable();
 
             $table->foreign('catalogue_id')->references('id')->on('catalogues');
-
+            $table->text('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });
     }

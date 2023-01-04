@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,13 +34,13 @@ Route::post('/catalogues/store',[CatalogueController::class,'store'])->name('cat
 Route::put('/catalogues/update/{id}',[CatalogueController::class,'update'])->name('catalogues.update'); //actualiza un catalogo recibiendo el id
 Route::delete('/catalogues/delete/{catalogue}',[CatalogueController::class,'destroy'])->name('catalogues.destroy'); // elimina un catalogo recibiendo el objeto de tipo catalogo
 
-Route::get('/medicines',[UserController::class,'index'])->name('medicines.index');
-Route::get('/medicines/create',[UserController::class,'create'])->name('medicines.create'); //Manda a formulario crear catalogos
-Route::get('/medicines/{id}',[UserController::class,'show'])->name('medicines.show');
-Route::get('/medicines/edit/{catalogue}',[UserController::class,'edit'])->name('medicines.edit');
-Route::post('/medicines/store',[BrandController::class,'store'])->name('medicines.store'); //guarda un nuevo catalogo
-Route::put('/medicines/update/{id}',[BrandController::class,'update'])->name('medicines.update'); //actualiza un catalogo recibiendo el id
-Route::delete('/medicines/delete/{catalogue}',[BrandController::class,'destroy'])->name('medicines.destroy'); // elimina un catalogo recibiendo el objeto de tipo catalogo
+Route::get('/medicines',[MedicineController::class,'index'])->name('medicines.index');
+Route::get('/medicines/create',[MedicineController::class,'create'])->name('medicines.create'); //Manda a formulario crear catalogos
+Route::get('/medicines/{id}',[MedicineController::class,'show'])->name('medicines.show');
+Route::get('/medicines/edit/{catalogue}',[MedicineController::class,'edit'])->name('medicines.edit');
+Route::post('/medicines/store',[MedicineController::class,'store'])->name('medicines.store'); //guarda un nuevo catalogo
+Route::put('/medicines/update/{id}',[Controller::class,'update'])->name('medicines.update'); //actualiza un catalogo recibiendo el id
+Route::delete('/medicines/delete/{catalogue}',[MedicineController::class,'destroy'])->name('medicines.destroy'); // elimina un catalogo recibiendo el objeto de tipo catalogo
 
 Route::get('/reminders',[UserController::class,'index'])->name('reminders.index');
 Route::get('/reminders/create',[UserController::class,'create'])->name('reminders.create'); //Manda a formulario crear catalogos
