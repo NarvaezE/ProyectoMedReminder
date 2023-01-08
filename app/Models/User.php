@@ -20,6 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
+        'rol',
+        'avatar',
+        'phone_number',
         'password',
     ];
 
@@ -46,5 +50,5 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Reminder');
     }
 
-    
+
 }
