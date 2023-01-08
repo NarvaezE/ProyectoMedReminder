@@ -84,7 +84,11 @@ class UserController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'description'=>'required',
+            'email'=>'required',
+            'username'=>'required',
+            'rol'=>'required',
+            'phone_number'=>'required',
+            'password'=>'required',
         ]);
         $catalogo=User::find($id);
 
