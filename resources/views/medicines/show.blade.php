@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 
-@section('title', 'Index Cupones')
+@section('title', 'Detalles Medicamentos')
 
 @section('content')
 
@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <div class="text-primary p-3">
-                                    <h4 class="text-primary">Detalles Catalogo</h4>
+                                    <h4 class="text-primary">Detalles Medicamentos</h4>
 
                                 </div>
                             </div>

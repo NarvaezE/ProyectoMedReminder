@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 
-@section('title', 'Index Cupones')
+@section('title', 'Index Medicamentos')
 
 @section('content')
     <h2 class="card-title">Medicinas</h2>

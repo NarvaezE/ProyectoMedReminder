@@ -94,12 +94,12 @@ class MedicineController extends Controller
             'stock'=>'required',
             'catalogue_id'=>'required',
         ]);
-        $catalogo=Medicine::find($id);
+        $medicina=Medicine::find($id);
 
         $medicine = $request->all();
 
-        $catalogo->update($medicine);
-        return redirect()->route('medicines.index')->with('success', 'Catalogo actualizado con exito');
+        $medicina->update($medicine);
+        return redirect()->route('medicines.index')->with('success', 'Medicina actualizada con exito');
     }
 
     /**

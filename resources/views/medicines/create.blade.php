@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 
-@section('title', 'Crear Catalogo')
+@section('title', 'Crear Medicamento')
 
 @section('content')
 
