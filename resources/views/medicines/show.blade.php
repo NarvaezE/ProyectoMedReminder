@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <div class="text-primary p-3">
-                                    <h4 class="text-primary">Detalles Medicamentos</h4>
+                                    <h4 class="text-primary">Detalles Medicamento</h4>
 
                                 </div>
                             </div>
@@ -26,10 +26,10 @@
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-sm-6">
-                                {{-- <div class="avatar-md profile-medicine-wid mb-4">
+                                <div class="avatar-md profile-medicine-wid mb-4">
                                     <img src="{{ asset('img/avatars/' . $medicine->avatar) }}" alt=""
                                         class="img-thumbnail">
-                                </div> --}}
+                                </div>
                                 <h4 class="font-size-20 text-truncate">{{ $medicine->name}}</h4>
 
                             </div>

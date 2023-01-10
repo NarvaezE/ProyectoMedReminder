@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -24,9 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        return view('users.create');
 
+        //return view('welcome');
+        return view('users.create');
     }
 
     /**
@@ -38,38 +40,64 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
+            'name'=>'required|regex:/^[\pL\s\-]+$/u',
+            'lastname'=>'required|regex:/^[\pL\s\-]+$/u',
+            'avatar'=>'required|image|mimes:png,jpeg,svg,jpg|max:1024',
+            'phone_number'=>'required|min:8|max:14',
+            'email'=>'required',
+            'password'=>'required|min:8'
         ]);
-        $user = $request->all();
 
+        $user = $request->all();
+        if(
+            $imagen=$request->file('avatar')
+            ){
+            $ruta = 'img/avatars/';
+            $avatar =  date('YmdHis').".".$imagen->guessExtension();
+            $imagen->move($ruta,$avatar);
+            $user['avatar']="$avatar";
+        }
+        $user['password']=bcrypt($request -> password);
         User::create($user);
-        return redirect()->route('users.index')->with('success', 'Catalogo creada con exito');
+        return redirect()->route('users.index')->with('success', 'Usuario creado con exito');
+    }
+    public function save(Request $request)
+    {
+        $user = $request->all();
+        if(
+            $imagen=$request->file('avatar')
+            ){
+            $ruta = 'img/avatars/';
+            $avatar =  date('YmdHis').".".$imagen->guessExtension();
+            $imagen->move($ruta,$avatar);
+            $user['avatar']="$avatar";
+        }
+        $user['password']=bcrypt($request -> password);
+        User::create($user);
+        return redirect()->route('auth.login')->with('success', 'Usuario registrado con exito');;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
         $user = User::find($id);
 
-        return view('categories.show',compact('category'));
+        return view('users.show',compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
-
         return view('users.edit',compact('user'));
     }
 
@@ -77,37 +105,45 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'username'=>'required',
-            'rol'=>'required',
-            'phone_number'=>'required',
-            'password'=>'required',
+            'name'=>'required|regex:/^[\pL\s\-]+$/u',
+            'lastname'=>'required|regex:/^[\pL\s\-]+$/u',
+            'rol'=>'required|integer|min:0|max:2|numeric',
+            'phone_number'=>'required|min:8|max:14',
+            'email'=>'required|email',
         ]);
-        $catalogo=User::find($id);
+
+        $usuario=User::find($request->id);
 
         $user = $request->all();
+        if($imagen=$request->file('avatar')){
+            $ruta = 'img/avatars/';
+            $avatar =  date('YmdHis').".".$imagen->guessExtension();
+            $imagen->move($ruta,$avatar);
+            $user['avatar']="$avatar";
+        }else{
+            unset($user['avatar']);
+        }
 
-        $catalogo->update($user);
-        return redirect()->route('users.index')->with('success', 'Catalogo actualizado con exito');
+        $usuario->update($user);
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
-        //
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Categoria eliminada con exito');
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado con exito');;
+
     }
 }

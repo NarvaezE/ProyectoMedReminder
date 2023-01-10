@@ -14,6 +14,15 @@ class ReminderSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // $reminder = new Reminder();
+        // $reminder->title = 'Paracetamol';
+        // $reminder->description = 'una paracetamol';
+        // $reminder->start_hour = '20';
+        // $reminder->initial_date = '1';
+        // $reminder->final_date = '1';
+        // $reminder->user_id = '1';
+        // $reminder->reminder_id = '1';
+        // $reminder->user_id = '1';
+        // $reminder->save();
     }
 }

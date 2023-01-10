@@ -46,7 +46,7 @@
               <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="rounded-circle header-profile-user"
-                  {{-- src="{{asset('img/avatars/'.Auth::user()->avatar)}}" --}}
+                  src="{{asset('img/avatars/'.Auth::user()->avatar)}}"
                       alt="Header Avatar">
                   <span class="d-none d-xl-inline-block ms-1" key="t-henry">User</span>
                   <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

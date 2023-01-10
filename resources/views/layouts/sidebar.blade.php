@@ -7,18 +7,18 @@
       <!-- Left Menu Start -->
       <ul class="metismenu list-unstyled" id="side-menu">
           <li class="menu-title" key="t-menu">Menú</li>
-          {{-- <li>
-              <a href="{{ route('auth.home') }}" class="waves-effect">
-                  <i class="bx bx-home-circle"></i>
-                  <span key="t-projects">Home</span>
+          <li>
+              <a href="{{ route('medicines.index') }}" class="waves-effect">
+                  <i class="bx bx-briefcase"></i>
+                  <span key="t-projects">Medicamentos</span>
               </a>
 
-          </li> --}}
+          </li>
 
           <li>
-              <a href="" class="waves-effect">
+              <a href="{{ route('catalogues.index') }}" class="waves-effect">
                   <i class="bx bx-briefcase-alt-2"></i>
-                  <span key="t-projects">Productos</span>
+                  <span key="t-projects">Catalogos</span>
               </a>
 
           </li>
